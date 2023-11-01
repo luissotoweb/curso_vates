@@ -16,8 +16,11 @@ public class Vendedor {
     private Long dni;
     private String direccion;
     private String password;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cliente_id")
     private List<Cliente> clientes;
+    @OneToOne(cascade = CascadeType.ALL)
+    private CuentaBancaria cuentaBancaria;
 
     //Getters y Setters
     public Long getId() {
@@ -82,5 +85,13 @@ public class Vendedor {
 
     public void setClientes(List<Cliente> clientes) {
         this.clientes = clientes;
+    }
+
+    public CuentaBancaria getCuentaBancaria() {
+        return cuentaBancaria;
+    }
+
+    public void setCuentaBancaria(CuentaBancaria cuentaBancaria) {
+        this.cuentaBancaria = cuentaBancaria;
     }
 }
